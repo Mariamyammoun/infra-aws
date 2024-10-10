@@ -14,7 +14,7 @@ pipeline {
                     #!/bin/bash
                     set -xe
                     cd Terraform
-                    sed -i "s/server_name/${SERVER_NAME}/g" backend.tf
+                    sed -i "s/server_name/${SERVER_NAME}/g" s3.tf
                     export TF_VAR_name=${SERVER_NAME}
                     terraform init
                     '''
