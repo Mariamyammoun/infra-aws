@@ -1,3 +1,9 @@
+# Définition de la variable pour le nom du serveur
+variable "server_name" {
+  description = "Le nom de l'instance EC2"
+  type        = string
+}
+
 # Création d'un VPC
 resource "aws_vpc" "my_vpc" {
   cidr_block = "10.0.0.0/16"
