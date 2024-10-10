@@ -17,6 +17,28 @@ data "aws_ami" "ubuntu" {
   }
   owners = ["099720109477"]
 }
+# Création du groupe de sécurité qui autorise SSH (port 22)
+resource "aws_security_group" "allow_ssh" {
+  name        = "allow_ssh"
+  description = "Autoriser l'accès SSH sur le port 22 dans le VPC par défaut"
+
+  # Autorise les connexions SSH (port 22) depuis n'importe quelle adresse IP
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Vous pouvez limiter ceci à votre adresse IP
+  }
+
+  # Autorise toutes les connexions sortantes
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
 
 
 
@@ -24,10 +46,11 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "my_server" {
   ami                    = "ami-08eb150f611ca277f" 
   instance_type          = "t3.micro"
-  key_name               = "mariam-key"           
+  key_name               = "mariam-key"   
+# Associer le groupe de sécurité pour permettre SSH
+  security_groups = [aws_security_group.allow_ssh.name]
 
   tags = {
-    Environment = "dev"
     Name = "${var.server_name}-server" 
   }
 
