@@ -24,7 +24,7 @@ pipeline {
                     // Appliquer la configuration Terraform et créer l'instance
                     sh '''
                     cd Terraform
-                    terraform apply -auto-approve
+                    terraform apply -auto-approve -var "instance_suffix=${env.BUILD_ID}"
                     '''
                     
                     // Récupérer l'adresse IP publique de l'instance EC2
