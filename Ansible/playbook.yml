@@ -1,3 +1,7 @@
+- name: Update apt repository
+  apt:
+    update_cache: yes
+
 - name: This sets up an apache2 webserver
   hosts: ec2
   become: yes
