@@ -8,13 +8,14 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = ["amzn2-ami-kernel-5.10-hvm-*-x86_64-gp2"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
   }
 
   filter {
     name   = "virtualization-type"
     values = ["hvm"]
   }
+  owners = ["099720109477"]
 }
 
 
