@@ -67,6 +67,11 @@ resource "aws_security_group" "my_security_group" {
     Name = "allow_ssh"
   }
 }
+variable "instance_suffix" {
+  description = "Suffixe unique pour le nom de l'instance"
+  type        = string
+  default     = "${timestamp()}"  # Génère un horodatage unique
+}
 
 # Création d'une instance EC2
 resource "aws_instance" "my_server" {
@@ -77,7 +82,7 @@ resource "aws_instance" "my_server" {
   subnet_id              = aws_subnet.my_subnet.id
 
   tags = {
-    Name = "MariamServer"
+    Name = "MariamServer-${var.instance_suffix}"
   }
 
  
