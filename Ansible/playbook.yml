@@ -1,6 +1,6 @@
 - name: Update apt repository
   hosts: all
-  become: true  # Si vous avez besoin d'exécuter avec des privilèges élevés
+  become: true 
   tasks:
     - name: Update apt repository
       apt:
