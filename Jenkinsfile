@@ -23,12 +23,14 @@ pipeline {
                 script {
                     // Appliquer la configuration Terraform et créer l'instance
                     sh '''
+                    #!/bin/bash
                     cd Terraform
                     terraform apply -auto-approve -var "server_name=${params.SERVER_NAME}"
                     '''
                     
                     // Récupérer l'adresse IP publique de l'instance EC2
                     def public_ip = sh(script: '''
+                    #!/bin/bash
                     cd Terraform
                     terraform output -raw instance_public_ip
                     ''', returnStdout: true).trim()
