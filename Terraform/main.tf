@@ -20,7 +20,7 @@ data "aws_ami" "ubuntu" {
 # Création du groupe de sécurité qui autorise SSH (port 22)
 resource "aws_security_group" "allow_ssh" {
   name        = "allow_ssh"
-  description = "Autoriser l'accès SSH sur le port 22 dans le VPC par défaut"
+  description = "Allow SSH access on port 22 in the default VPC"
 
   # Autorise les connexions SSH (port 22) depuis n'importe quelle adresse IP
   ingress {
