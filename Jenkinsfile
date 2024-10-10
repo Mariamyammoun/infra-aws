@@ -29,7 +29,7 @@ pipeline {
                     sh '''
                     #!/bin/bash
                     cd Terraform
-                    terraform apply -auto-approve 
+                    terraform apply -auto-approve -var "server_name=${SERVER_NAME}"
                     '''
                     
                     // Récupérer l'adresse IP publique de l'instance EC2
