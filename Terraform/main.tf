@@ -20,7 +20,7 @@ data "aws_ami" "ubuntu" {
 
 
 # Création d'une instance EC2
-resource "aws_instance" "dev_machine" {
+resource "aws_instance" "my_server" {
   ami                    = "ami-08eb150f611ca277f" 
   instance_type          = "t3.micro"
   key_name               = "mariam-key"           
