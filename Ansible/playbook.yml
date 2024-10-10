@@ -1,6 +1,11 @@
 - name: Update apt repository
-  apt:
-    update_cache: yes
+  hosts: all
+  become: true  # Si vous avez besoin d'exécuter avec des privilèges élevés
+  tasks:
+    - name: Update apt repository
+      apt:
+        update_cache: yes
+
 
 - name: This sets up an apache2 webserver
   hosts: ec2
