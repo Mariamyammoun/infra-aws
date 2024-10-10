@@ -11,9 +11,11 @@ pipeline {
                 script {
                     // Initialiser Terraform
                     sh '''
+                    #!/bin/bash
+                    set -xe
                     cd Terraform
                     sed -i "s/server_name/${SERVER_NAME}/g" backend.tf
-export TF_VAR_name=${SERVER_NAME}
+                    export TF_VAR_name=${SERVER_NAME}
                     terraform init
                     '''
                 }
@@ -27,7 +29,7 @@ export TF_VAR_name=${SERVER_NAME}
                     sh '''
                     #!/bin/bash
                     cd Terraform
-                    terraform apply -auto-approve -var "server_name=${params.SERVER_NAME}"
+                    terraform apply -auto-approve 
                     '''
                     
                     // Récupérer l'adresse IP publique de l'instance EC2
